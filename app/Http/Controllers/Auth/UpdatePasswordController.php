@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\UpdatePasswordRequest;
 use App\User;
-use App\Http\Requests\Auth\LoginRequest;
 
-
-class LoginController extends Controller
+class UpdatePasswordController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,9 +14,10 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(LoginRequest $request)
+    public function __invoke(UpdatePasswordRequest $request)
     {
         $user = User::where('email', $request->email)->first();
+
         if (!$user) {
             return response()->json([
                 'response_code' => '01',
@@ -29,17 +28,14 @@ class LoginController extends Controller
                 'response_code' => '01',
                 'response_message' => 'Email Not Verified, Please Verify Your Email First !',
             ], 200);
-        } else if (!$token = auth()->attempt($request->only('email', 'password'))) {
-            return response()->json([
-                'response_code' => '01',
-                'response_message' => 'Login Failed, Email and Password not Match !',
-            ], 200);
         } else {
+            $user->password = bcrypt($request->password);
+            $user->update();
+
             return response()->json([
                 'response_code' => '00',
-                'response_message' => 'Login Success!',
+                'response_message' => 'Password Changed Successfully!',
                 'data' => $user,
-                'token' => $token //bisa juga pake compact('token')
             ]);
         }
     }

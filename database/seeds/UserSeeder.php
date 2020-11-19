@@ -24,7 +24,6 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role_id' => 'aef4e47f-e7b9-4d94-8477-ac4ea63fe47d',
             ],
             [
                 'id' => Str::uuid(),
@@ -35,7 +34,6 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role_id' => 'e1964458-42dd-421e-9b30-c273213fa641',
             ],
             [
                 'id' => Str::uuid(),
@@ -46,7 +44,6 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role_id' => 'e1964458-42dd-421e-9b30-c273213fa641',
             ],
         ]);
     }

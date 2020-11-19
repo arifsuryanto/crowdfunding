@@ -17,7 +17,7 @@ class OtpCode extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'valid_until', 'status'
+        'code', 'valid_until', 'user_id'
     ];
 
     /**
@@ -34,6 +34,7 @@ class OtpCode extends Model
             }
         });
     }
+    protected $table = 'otp_codes';
 
     /**
      * Get the value indicating whether the IDs are incrementing.
