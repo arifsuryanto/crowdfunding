@@ -8,7 +8,7 @@ use App\OtpCode;
 use App\User;
 use Carbon\Carbon;
 
-class VerificationController extends Controller
+class VerifController extends Controller
 {
     /**
      * Handle the incoming request.

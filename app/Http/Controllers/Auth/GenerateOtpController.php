@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\GenerateOtpRequest;
 use App\OtpCode;
+use Mail;
 use App\User;
 use Carbon\Carbon;
+use App\Events\GenerateOtpEvent;
+use App\Mail\GenerateOtpMail;
 
-class RegenerateOtpController extends Controller
+
+class GenerateOtpController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -18,9 +22,11 @@ class RegenerateOtpController extends Controller
      */
     public function __invoke(GenerateOtpRequest $request)
     {
+
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
+            event(new GenerateOtpEvent($user));
             return response()->json([
                 'response_code' => '01',
                 'response_message' => 'Email Not Registered',

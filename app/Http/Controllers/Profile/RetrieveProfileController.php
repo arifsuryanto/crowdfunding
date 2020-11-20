@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GetProfileController extends Controller
+class RetrieveProfileController extends Controller
 {
     /**
      * Handle the incoming request.
