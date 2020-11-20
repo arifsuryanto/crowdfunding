@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +27,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Vue from 'vue'
+import router from './router.js'
+import App from './App.vue'
+import vuetify from './plugins/vuetify.js'
+import './bootstrap.js';
+
 const app = new Vue({
     el: '#app',
+    router,
+    vuetify,
+    components: {
+        App
+    },
 });
