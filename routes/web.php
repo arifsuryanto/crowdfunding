@@ -34,13 +34,3 @@ Route::middleware(['auth', 'email', 'admin'])->group(function () {
         return 'Welcome Admin';
     });
 });
-Route::group(
-    [
-        'middleware' => 'api',
-        'prefix' => 'blog',
-    ],
-    function () {
-        Route::get('random/{count}', 'BlogController@random');
-        Route::post('store', 'BlogController@store');
-    }
-);

@@ -36,6 +36,7 @@ class Campaign extends Model
      * The attributes that are mass assignable.
      *
      * @var array
+     */
     protected $fillable = [
         'title', 'description', 'image'
     ];
