@@ -38,7 +38,8 @@ class Campaign extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'image'
+        'title', 'description', 'image', 'address', 'required', 'collected'
+
     ];
 
     protected $guarded = [];
