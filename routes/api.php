@@ -55,7 +55,5 @@ Route::group(
     function () {
         Route::get('random/{count}', 'BlogController@random');
         Route::post('store', 'BlogController@store');
-        Route::get('/', 'CampaignController@index');
-        Route::get('/{id}', 'CampaignController@show');
     }
 );

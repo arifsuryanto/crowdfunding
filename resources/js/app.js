@@ -31,7 +31,6 @@ import Vue from 'vue'
 import router from './router.js'
 import App from './App.vue'
 import vuetify from './plugins/vuetify.js'
-import CampaignItem from './components/CampaignItem.vue'
 import './bootstrap.js';
 
 const app = new Vue({
@@ -39,7 +38,6 @@ const app = new Vue({
     router,
     vuetify,
     components: {
-        App,
-        CampaignItem
+        App
     },
 });

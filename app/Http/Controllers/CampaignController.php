@@ -14,15 +14,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::paginate(4);
-
-        $data['campaigns'] = $campaigns;
-
-        return response()->json([
-            'response_code' => '00',
-            'response_message' => 'Data campaign berhasil ditampilkan',
-            'data' => $data
-        ], 200);
+        //
     }
 
     public function random($count)
@@ -52,19 +44,12 @@ class CampaignController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg',
-            'address' => 'required',
-            'required' => 'required',
-
+            'image' => 'required|mimes:png,jpg,jpeg'
         ]);
 
         $campaign = Campaign::create([
             'title' => $request->title,
             'description' => $request->description,
-            'address' => $request->address,
-            'required' => $request->required,
-            'collected' => 0
-
         ]);
 
         if ($request->hasFile('image')) {
@@ -105,15 +90,7 @@ class CampaignController extends Controller
      */
     public function show($id)
     {
-        $campaign = Campaign::find($id);
-
-        $data['campaign'] = $campaign;
-
-        return response()->json([
-            'response_code' => '00',
-            'response_message' => 'Data campaign berhasil ditampilkan',
-            'data' => $data
-        ], 200);
+        //
     }
 
     /**
