@@ -2,7 +2,7 @@
   <v-app>
     <!-- sidebar   -->
     <v-navigation-drawer app v-model="drawer">
-      <v-list>
+      <v-list dense nav>
         <v-list-item v-if="!guest">
           <v-list-item-avatar>
             <v-img src="https://randomuser.me/api/portraits/men/85.jpg">
@@ -30,6 +30,7 @@
           v-for="(item, index) in menus"
           :key="`menu-` + index"
           :to="item.route"
+          link
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -51,14 +52,14 @@
       </template>
     </v-navigation-drawer>
 
-    <!-- header -->
+    <!-- header in home -->
     <v-app-bar
       app
       absolute
       color="primary"
       dark
       elevate-on-scroll
-      scroll-target="#scrolling-techniques-7"
+      v-if="isHome"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Sanbercode App</v-toolbar-title>
@@ -85,6 +86,29 @@
       ></v-text-field>
     </v-app-bar>
 
+    <!-- header not in home -->
+    <v-app-bar app absolute color="primary" dark elevate-on-scroll v-else>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-btn icon @click.stop="$router.go(-1)">
+        <v-icon>mdi-arrow-left-circle</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-toolbar-title>Sanbercode App</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-badge color="success" overlap>
+          <template v-slot:badge>
+            <span>3</span>
+          </template>
+          <v-icon>mdi-cash-multiple</v-icon>
+        </v-badge>
+      </v-btn>
+    </v-app-bar>
+
     <!-- Sizes your content based upon application components -->
     <v-main>
       <!-- Provides the application the proper gutter -->
@@ -105,18 +129,6 @@
       </v-footer>
     </v-card>
   </v-app>
-
-  <!-- <div class="wrapper">
-    <router-link to="/">Home</router-link>
-    <router-link to="/donations">Donations</router-link>
-    <router-link to="/blogs">Blogs</router-link>
-
-    <div class="content-wrapper">
-      <router-view></router-view>
-    </div>
-
-    <app-footer />
-  </div> -->
 </template>
 
 <script>
@@ -130,5 +142,10 @@ export default {
     ],
     guest: false,
   }),
+  computed: {
+    isHome() {
+      return this.$route.path === "/" || this.$route.path === "/home";
+    },
+  },
 };
 </script>
