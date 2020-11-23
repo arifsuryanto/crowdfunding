@@ -73,6 +73,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -96,10 +97,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         var response = error.response;
         console.log(response);
+        console.log("hello");
+        console.log(id);
       });
     },
     donate: function donate() {
-      alert("donate");
+      this.$store.commit("increment");
+      alert("Your donation will go a long way, Thanks");
     }
   }
 });
