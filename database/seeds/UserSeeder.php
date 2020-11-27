@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'photo' => 'photos/profile/kraken.jpg'
             ],
             [
                 'id' => Str::uuid(),
@@ -34,6 +35,8 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'photo' => 'photos/profile/kraken.jpg'
+
             ],
             [
                 'id' => Str::uuid(),
@@ -44,6 +47,8 @@ class UserSeeder extends Seeder
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'photo' => 'photos/profile/kraken.jpg'
+
             ],
         ]);
     }

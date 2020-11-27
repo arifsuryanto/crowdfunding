@@ -17,20 +17,20 @@ use Illuminate\Support\Facades\Auth;
 Route::view('/{any?}', 'app')->where('any', '.*');
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth', 'email'])->group(function () {
+// Route::middleware(['auth', 'email'])->group(function () {
 
-    Route::get('/cek-email', function () {
-        return 'Email Verified';
-    });
-});
+//     Route::get('/cek-email', function () {
+//         return 'Email Verified';
+//     });
+// });
 
-Route::middleware(['auth', 'email', 'admin'])->group(function () {
+// Route::middleware(['auth', 'email', 'admin'])->group(function () {
 
-    Route::get('/cek-admin', function () {
-        return 'Welcome Admin';
-    });
-});
+//     Route::get('/cek-admin', function () {
+//         return 'Welcome Admin';
+//     });
+// });
