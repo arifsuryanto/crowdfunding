@@ -29,7 +29,7 @@ Route::namespace('Auth')->group(function () {
 
     Route::post('login', 'LoginController');
 
-    Route::post('logout', 'LogoutController');
+    Route::post('logout', 'LogoutController')->middleware('auth:api');
 });
 
 Route::namespace('Profile')->middleware('auth:api')->group(function () {
