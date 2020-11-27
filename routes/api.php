@@ -30,6 +30,8 @@ Route::namespace('Auth')->group(function () {
     Route::post('login', 'LoginController');
 
     Route::post('logout', 'LogoutController')->middleware('auth:api');
+
+    Route::post('check-token', 'CheckTokenController')->middleware('auth:api');
 });
 
 Route::namespace('Profile')->middleware('auth:api')->group(function () {
