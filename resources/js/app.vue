@@ -1,7 +1,17 @@
 <template>
   <v-app>
+    <!-- alert -->
     <alert></alert>
 
+    <!-- dialog Search -->
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="scale-transition"
+    >
+      <search @closed="closeDialog" />
+    </v-dialog>
     <!-- sidebar   -->
     <v-navigation-drawer app v-model="drawer">
       <v-list>
@@ -88,6 +98,7 @@
         label="Search"
         prepend-inner-icon="mdi-magnify"
         solo-inverted
+        @click.native="openDialog"
       ></v-text-field>
     </v-app-bar>
 
@@ -128,13 +139,16 @@
 <script>
 import { mapGetters } from "vuex";
 import Alert from "./components/Alert.vue";
+import Search from "./components/Search.vue";
 export default {
   components: {
     Alert: () => import("./components/Alert"),
+    Search: () => import("./components/Search"),
   },
   name: "App",
   data: () => ({
     drawer: false,
+    dialog: false,
     menus: [
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Campaigns", icon: "mdi-hand-heart", route: "/campaigns" },
@@ -153,6 +167,14 @@ export default {
     //   return this.$store.getters.transaction;
     //   console.log(this.$store.getters.transaction);
     // },
+  },
+  methods: {
+    closeDialog(value) {
+      this.dialog = value;
+    },
+    openDialog(value) {
+      this.dialog = true;
+    },
   },
 };
 </script>
