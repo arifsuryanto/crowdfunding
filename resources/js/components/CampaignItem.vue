@@ -21,7 +21,7 @@
         </div>
         <v-spacer></v-spacer>
         <div class="grey--text">
-          <strong>{{ proggress }}%</strong>
+          <strong>{{ progress }}%</strong>
         </div>
       </v-row>
     </v-card-text>

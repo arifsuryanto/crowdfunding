@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <alert></alert>
+
     <!-- sidebar   -->
     <v-navigation-drawer app v-model="drawer">
       <v-list>
@@ -65,10 +67,10 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon v-if="transaction != 0">
-        <v-badge color="success" overlap>
+      <v-btn icon v-if="transactions != 0">
+        <v-badge color="warning" overlap>
           <template v-slot:badge>
-            <span>{{ transaction }}</span>
+            <span>{{ transactions }}</span>
           </template>
           <v-icon>mdi-cash-multiple</v-icon>
         </v-badge>
@@ -124,7 +126,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import Alert from "./components/Alert.vue";
 export default {
+  components: {
+    Alert: () => import("./components/Alert"),
+  },
   name: "App",
   data: () => ({
     drawer: false,
@@ -139,10 +146,13 @@ export default {
     isHome() {
       return this.$route.path === "/" || this.$route.path === "/home";
     },
-    transaction() {
-      return this.$store.getters.transaction;
-      console.log(this.$store.getters.transaction);
-    },
+    ...mapGetters({
+      transactions: "transaction/transactions",
+    }),
+    // transaction() {
+    //   return this.$store.getters.transaction;
+    //   console.log(this.$store.getters.transaction);
+    // },
   },
 };
 </script>

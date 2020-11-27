@@ -64,6 +64,8 @@
 
 
 <script>
+import { mapActions, mapMutations } from "vuex";
+
 export default {
   data: () => ({
     campaign: {},
@@ -90,9 +92,23 @@ export default {
           console.log(id);
         });
     },
+    ...mapMutations({
+      tambahTransaksi: "transaction/insert",
+    }),
+
+    ...mapActions({
+      setAlert: "alert/set",
+    }),
+
     donate() {
-      this.$store.commit("insert");
+      this.tambahTransaksi();
+      this.setAlert({
+        status: true,
+        color: "success",
+        text: "transaksi berhasil",
+      });
     },
+    // go() {},
   },
 };
 </script>
