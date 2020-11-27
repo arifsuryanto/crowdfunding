@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Traits\UsesUuid;
 
 class Blog extends Model
 {
+    use UsesUuid;
+
     /**
      * The "booting" function of model
      *

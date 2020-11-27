@@ -29,6 +29,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 import Vue from 'vue'
 import router from './router.js'
+import store from './store.js'
+
 import App from './App.vue'
 import vuetify from './plugins/vuetify.js'
 import CampaignItem from './components/CampaignItem.vue'
@@ -36,21 +38,6 @@ import './bootstrap.js';
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
-const store = new Vuex.Store({
-    state: {
-        count: 0,
-        title: "Donations Counter"
-    },
-    mutations: {
-        increment(state) { state.count++ },
-    },
-    getters: {
-        getCounter: state => {
-            return state.count
-        },
-    },
-})
 
 
 const app = new Vue({

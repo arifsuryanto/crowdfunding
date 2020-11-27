@@ -102,8 +102,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     donate: function donate() {
-      this.$store.commit("increment");
-      alert("Your donation will go a long way, Thanks");
+      this.$store.commit("insert");
     }
   }
 });

@@ -14,7 +14,7 @@
         </v-list-item>
 
         <div class="pa-2" v-if="guest">
-          <v-btn block color="primary" class="mb-1">
+          <v-btn block color="success" class="mb-1">
             <v-icon left>mdi-lock</v-icon>
             Login
           </v-btn>
@@ -55,7 +55,7 @@
     <v-app-bar
       app
       absolute
-      color="primary"
+      color="success"
       dark
       elevate-on-scroll
       scroll-target="#scrolling-techniques-7"
@@ -65,13 +65,17 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <v-btn icon v-if="transaction != 0">
         <v-badge color="success" overlap>
           <template v-slot:badge>
-            <span>{{ counter }}</span>
+            <span>{{ transaction }}</span>
           </template>
           <v-icon>mdi-cash-multiple</v-icon>
         </v-badge>
+      </v-btn>
+
+      <v-btn icon v-else>
+        <v-icon>mdi-cash-multiple</v-icon>
       </v-btn>
 
       <v-text-field
@@ -127,18 +131,18 @@ export default {
     menus: [
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Campaigns", icon: "mdi-hand-heart", route: "/campaigns" },
+      { title: "Blogs", icon: "mdi-hand-heart", route: "/blogs" },
     ],
     guest: false,
   }),
-    computed: {
+  computed: {
     isHome() {
       return this.$route.path === "/" || this.$route.path === "/home";
     },
-    counter() {
-      return this.$store.getters.getCounter;
+    transaction() {
+      return this.$store.getters.transaction;
+      console.log(this.$store.getters.transaction);
     },
   },
-
-  
 };
 </script>

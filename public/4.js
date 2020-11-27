@@ -87,6 +87,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("api/campaign/random/2").then(function (response) {
+      console.log(response.data);
       var data = response.data.data;
       _this.campaigns = data.campaigns;
     })["catch"](function (error) {
@@ -178,7 +179,7 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "blue--text",
-                  attrs: { small: "", text: "", to: "/campaigns" }
+                  attrs: { small: "", text: "", to: "/blogs" }
                 },
                 [
                   _vm._v("\n        All Blog "),

@@ -2144,6 +2144,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   data: function data() {
@@ -2157,6 +2161,10 @@ __webpack_require__.r(__webpack_exports__);
         title: "Campaigns",
         icon: "mdi-hand-heart",
         route: "/campaigns"
+      }, {
+        title: "Blogs",
+        icon: "mdi-hand-heart",
+        route: "/blogs"
       }],
       guest: false
     };
@@ -2165,8 +2173,9 @@ __webpack_require__.r(__webpack_exports__);
     isHome: function isHome() {
       return this.$route.path === "/" || this.$route.path === "/home";
     },
-    counter: function counter() {
-      return this.$store.getters.getCounter;
+    transaction: function transaction() {
+      return this.$store.getters.transaction;
+      console.log(this.$store.getters.transaction);
     }
   }
 });
@@ -2216,7 +2225,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "campaign-item",
   props: ["campaign"],
   computed: {
-    proggress: function proggress() {
+    progress: function progress() {
       var precentage = parseInt(this.campaign.collected / this.campaign.required * 100);
       console.log(precentage);
       return precentage;
@@ -38553,7 +38562,7 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "mb-1",
-                          attrs: { block: "", color: "primary" }
+                          attrs: { block: "", color: "success" }
                         },
                         [
                           _c("v-icon", { attrs: { left: "" } }, [
@@ -38618,7 +38627,7 @@ var render = function() {
           attrs: {
             app: "",
             absolute: "",
-            color: "primary",
+            color: "success",
             dark: "",
             "elevate-on-scroll": "",
             "scroll-target": "#scrolling-techniques-7"
@@ -38638,30 +38647,44 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "" } },
-            [
-              _c(
-                "v-badge",
-                {
-                  attrs: { color: "success", overlap: "" },
-                  scopedSlots: _vm._u([
+          _vm.transaction != 0
+            ? _c(
+                "v-btn",
+                { attrs: { icon: "" } },
+                [
+                  _c(
+                    "v-badge",
                     {
-                      key: "badge",
-                      fn: function() {
-                        return [_c("span", [_vm._v(_vm._s(_vm.counter))])]
-                      },
-                      proxy: true
-                    }
-                  ])
-                },
-                [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
+                      attrs: { color: "success", overlap: "" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "badge",
+                            fn: function() {
+                              return [
+                                _c("span", [_vm._v(_vm._s(_vm.transaction))])
+                              ]
+                            },
+                            proxy: true
+                          }
+                        ],
+                        null,
+                        false,
+                        1793511274
+                      )
+                    },
+                    [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
+                    1
+                  )
+                ],
                 1
               )
-            ],
-            1
-          ),
+            : _c(
+                "v-btn",
+                { attrs: { icon: "" } },
+                [_c("v-icon", [_vm._v("mdi-cash-multiple")])],
+                1
+              ),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {
@@ -38764,14 +38787,14 @@ var render = function() {
             {
               attrs: { height: "15" },
               model: {
-                value: _vm.proggress,
+                value: _vm.progress,
                 callback: function($$v) {
-                  _vm.proggress = $$v
+                  _vm.progress = $$v
                 },
-                expression: "proggress"
+                expression: "progress"
               }
             },
-            [_c("strong", [_vm._v(_vm._s(Math.ceil(_vm.proggress)) + "%")])]
+            [_c("strong", [_vm._v(_vm._s(Math.ceil(_vm.progress)) + "%")])]
           )
         ],
         1
@@ -99293,12 +99316,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/vuetify.js */ "./resources/js/plugins/vuetify.js");
-/* harmony import */ var _components_CampaignItem_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CampaignItem.vue */ "./resources/js/components/CampaignItem.vue");
-/* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
-/* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_bootstrap_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store.js */ "./resources/js/store.js");
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
+/* harmony import */ var _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plugins/vuetify.js */ "./resources/js/plugins/vuetify.js");
+/* harmony import */ var _components_CampaignItem_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/CampaignItem.vue */ "./resources/js/components/CampaignItem.vue");
+/* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_bootstrap_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -99331,31 +99355,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_6__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_6__["default"].Store({
-  state: {
-    count: 0,
-    title: "Donations Counter"
-  },
-  mutations: {
-    increment: function increment(state) {
-      state.count++;
-    }
-  },
-  getters: {
-    getCounter: function getCounter(state) {
-      return state.count;
-    }
-  }
-});
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  store: store,
-  vuetify: _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+  store: _store_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  vuetify: _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_4__["default"],
   components: {
-    App: _App_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    CampaignItem: _components_CampaignItem_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    CampaignItem: _components_CampaignItem_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
@@ -99636,6 +99645,40 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: {
+    transaction: 0
+  },
+  mutations: {
+    insert: function insert(state, payload) {
+      state.transaction++;
+    }
+  },
+  actions: {},
+  getters: {
+    transaction: function transaction(state) {
+      return state.transaction;
+    }
+  }
+}));
 
 /***/ }),
 

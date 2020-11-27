@@ -86,15 +86,12 @@ export default {
         .catch((error) => {
           let { response } = error;
           console.log(response);
-                    console.log("hello");
-                                        console.log(id);
-
-
+          console.log("hello");
+          console.log(id);
         });
     },
     donate() {
-      this.$store.commit("increment");
-      alert("Your donation will go a long way, Thanks");
+      this.$store.commit("insert");
     },
   },
 };

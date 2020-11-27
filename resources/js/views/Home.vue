@@ -30,7 +30,7 @@
 
     <v-container class="ma-0 pa-0" grid-list-sm>
       <div class="text-right">
-        <v-btn small text to="/campaigns" class="blue--text">
+        <v-btn small text to="/blogs" class="blue--text">
           All Blog <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
@@ -73,6 +73,7 @@ export default {
     axios
       .get("api/campaign/random/2")
       .then((response) => {
+        console.log(response.data);
         let { data } = response.data;
         this.campaigns = data.campaigns;
       })

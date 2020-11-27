@@ -14,7 +14,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::paginate(4);
+        $campaigns = Campaign::paginate(8);
 
         $data['campaigns'] = $campaigns;
 

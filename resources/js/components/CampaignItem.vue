@@ -6,8 +6,8 @@
     </v-img>
 
     <v-card-text>
-      <v-progress-linear v-model="proggress" height="15">
-        <strong>{{ Math.ceil(proggress) }}%</strong>
+      <v-progress-linear v-model="progress" height="15">
+        <strong>{{ Math.ceil(progress) }}%</strong>
       </v-progress-linear>
     </v-card-text>
 
@@ -33,7 +33,7 @@ export default {
   name: "campaign-item",
   props: ["campaign"],
   computed: {
-    proggress: function () {
+    progress: function () {
       let precentage = parseInt(
         (this.campaign.collected / this.campaign.required) * 100
       );
