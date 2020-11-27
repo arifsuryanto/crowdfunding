@@ -18,29 +18,21 @@ class LoginController extends Controller
      */
     public function __invoke(LoginRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
-        if (!$user) {
-            return response()->json([
-                'response_code' => '01',
-                'response_message' => 'Email Not Found',
-            ], 200);
-        } else if ($user->email_verified_at == null) {
-            return response()->json([
-                'response_code' => '01',
-                'response_message' => 'Email Not Verified, Please Verify Your Email First !',
-            ], 200);
-        } else if (!$token = auth()->attempt($request->only('email', 'password'))) {
-            return response()->json([
-                'response_code' => '01',
-                'response_message' => 'Login Failed, Email and Password not Match !',
-            ], 200);
-        } else {
-            return response()->json([
-                'response_code' => '00',
-                'response_message' => 'Login Success!',
-                'data' => $user,
-                'token' => $token //bisa juga pake compact('token')
-            ]);
+
+        $credentials = $request->only(['email', 'password']);
+
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Email atau Password tidak ditemukan'], 401);
         }
+
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+
+        return response()->json([
+            'response_code' => '00',
+            'response_message' => 'Login Success!',
+            'data' => $data,
+            'token' => $token
+        ]);
     }
 }

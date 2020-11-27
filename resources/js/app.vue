@@ -4,29 +4,37 @@
     <alert></alert>
 
     <!-- dialog Search -->
-    <v-dialog
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="scale-transition"
-    >
-      <search @closed="closeDialog" />
-    </v-dialog>
+    <keep-alive>
+      <v-dialog
+        v-model="dialog"
+        fullscreen
+        hide-overlay
+        persistent
+        transition="dialog-button-transition"
+      >
+        <component :is="currentComponent" @closed="setDialogStatus"></component>
+      </v-dialog>
+    </keep-alive>
+
     <!-- sidebar   -->
     <v-navigation-drawer app v-model="drawer">
       <v-list>
         <v-list-item v-if="!guest">
           <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/lego/0.jpg">
-            </v-img>
+            <v-img :src="user.user.photo"> </v-img>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Kraken</v-list-item-title>
+            <v-list-item-title>{{ user.user.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
         <div class="pa-2" v-if="guest">
-          <v-btn block color="success" class="mb-1">
+          <v-btn
+            block
+            color="success"
+            class="mb-1"
+            @click="setDialogComponent('login')"
+          >
             <v-icon left>mdi-lock</v-icon>
             Login
           </v-btn>
@@ -98,7 +106,7 @@
         label="Search"
         prepend-inner-icon="mdi-magnify"
         solo-inverted
-        @click.native="openDialog"
+        @click.native="setDialogComponent('search')"
       ></v-text-field>
     </v-app-bar>
 
@@ -137,24 +145,25 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Alert from "./components/Alert.vue";
 import Search from "./components/Search.vue";
+import Login from "./components/Login.vue";
+
 export default {
   components: {
     Alert: () => import("./components/Alert"),
     Search: () => import("./components/Search"),
+    Login: () => import("./components/Login"),
   },
   name: "App",
   data: () => ({
     drawer: false,
-    dialog: false,
     menus: [
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Campaigns", icon: "mdi-hand-heart", route: "/campaigns" },
       { title: "Blogs", icon: "mdi-hand-heart", route: "/blogs" },
     ],
-    guest: false,
   }),
   computed: {
     isHome() {
@@ -162,19 +171,25 @@ export default {
     },
     ...mapGetters({
       transactions: "transaction/transactions",
+      guest: "auth/guest",
+      user: "auth/user",
+      dialogStatus: "dialog/status",
+      currentComponent: "dialog/component",
     }),
-    // transaction() {
-    //   return this.$store.getters.transaction;
-    //   console.log(this.$store.getters.transaction);
-    // },
+    dialog: {
+      get() {
+        return this.dialogStatus;
+      },
+      set(value) {
+        this.setDialogStatus(value);
+      },
+    },
   },
   methods: {
-    closeDialog(value) {
-      this.dialog = value;
-    },
-    openDialog(value) {
-      this.dialog = true;
-    },
+    ...mapActions({
+      setDialogStatus: "dialog/setStatus",
+      setDialogComponent: "dialog/setComponent",
+    }),
   },
 };
 </script>
