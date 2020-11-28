@@ -17,7 +17,6 @@ export default {
             commit('setStatus', status)
         },
         setComponent: ({ commit }, component) => {
-            console.log("ini component " + component)
             commit('setComponent', component)
             commit('setStatus', true)
         }

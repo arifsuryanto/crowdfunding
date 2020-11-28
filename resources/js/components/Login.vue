@@ -128,7 +128,7 @@ export default {
         .get(url)
         .then((response) => {
           let data = response.data;
-          console.log("ini google " + data.url);
+          console.log("ini url google " + data.url);
           window.location.href = data.url;
         })
         .catch((error) => {

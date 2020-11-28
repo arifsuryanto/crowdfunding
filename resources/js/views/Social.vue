@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <h1>Halaman Social</h1> -->
+    <h1>Halaman Social</h1>
   </div>
 </template>
 
@@ -31,7 +31,6 @@ export default {
         .then((response) => {
           let { data } = response.data;
           this.setAuth(data);
-          console.log("ini data googlenya" + data);
           if (this.user.user.id.length > 0) {
             this.setAlert({
               status: true,
@@ -59,9 +58,8 @@ export default {
   },
   mounted() {
     this.code = this.$route.query.code;
-    this.provider = this.$route.path.split("/")[2];
-    console.log("ini" + this.code);
-    console.log("ini" + this.provider);
+    this.provider = this.$route.path.split("/")[3];
+    console.log("ini provider" + this.provider + " " + this.code);
     this.go(this.provider, this.code);
   },
 };

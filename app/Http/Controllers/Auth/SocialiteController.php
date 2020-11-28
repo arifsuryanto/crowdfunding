@@ -22,49 +22,51 @@ class SocialiteController extends Controller
 
     public function handleProviderCallback($provider)
     {
-        try {
-            $social_user = Socialite::driver($provider)->stateless()->user();
+        // try {
+        $social_user = Socialite::driver($provider)->stateless()->user();
 
-            if (!$social_user) {
-                return response()->json([
-                    'response_code' => '01',
-                    'response_message' => 'Login Failed !'
-                ]);
-            }
-
-            $user = User::where('email', $social_user->email)->first();
-
-            if (!$user) {
-
-                if ($provider == 'google') {
-                    $photo = $social_user->avatar;
-                }
-
-                $user = User::create([
-                    'email' => $social_user->email,
-                    'name' => $social_user->name,
-                    'email_verified_at' => Carbon::now(),
-                    'password' => '',
-                    'remember_token' => '',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                    'photo' => $photo
-                ]);
-            }
-
-            $data['user'] = $user;
-            $data['token'] = auth()->login($user);
-
-            return response()->json([
-                'response_code' => '00',
-                'response_message' => 'Login Success !',
-                'data' => $data
-            ]);
-        } catch (\Throwable $th) {
+        if (!$social_user) {
             return response()->json([
                 'response_code' => '01',
                 'response_message' => 'Login Failed !'
-            ], 401);
+
+            ]);
         }
+
+
+        $user = User::whereEmail($social_user->email)->first();
+
+        if (!$user) {
+
+            if ($provider == 'google') {
+                $photo = $social_user->avatar;
+            }
+
+            $user = User::create([
+                'email' => $social_user->email,
+                'name' => $social_user->name,
+                'email_verified_at' => Carbon::now(),
+                'password' => bcrypt('secret'),
+                'remember_token' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'photo' => $photo
+            ]);
+        }
+
+        $data['user'] = $user;
+        $data['token'] = auth()->login($user);
+
+        return response()->json([
+            'response_code' => '00',
+            'response_message' => 'Login Success oi!',
+            'data' => $data
+        ]);
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'response_code' => '01',
+        //         'response_message' => 'Login Failed oi !'
+        //     ], 401);
+        // }
     }
 }

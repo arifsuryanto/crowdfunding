@@ -20,16 +20,16 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-            $model->id = $model->getIdUser();
-        });
-    }
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::creating(function ($model) {
+    //         if (!$model->getKey()) {
+    //             $model->{$model->getKeyName()} = (string) Str::uuid();
+    //         }
+    //         $model->id = $model->getIdUser();
+    //     });
+    // }
     protected function getIdUser()
     {
         $getIdUser = Role::where('role_name', 'user')->first();
@@ -53,11 +53,6 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
-
-    public function getIncrementing()
-    {
-        return false;
-    }
 
 
     protected $fillable = [

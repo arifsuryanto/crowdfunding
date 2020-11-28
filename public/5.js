@@ -47,8 +47,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this.setAuth(data);
 
-        console.log("ini data googlenya" + data);
-
         if (_this.user.user.id.length > 0) {
           _this.setAlert({
             status: true,
@@ -79,9 +77,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   mounted: function mounted() {
     this.code = this.$route.query.code;
-    this.provider = this.$route.path.split("/")[2];
-    console.log("ini" + this.code);
-    console.log("ini" + this.provider);
+    this.provider = this.$route.path.split("/")[3];
+    console.log("ini provider" + this.provider + " " + this.code);
     this.go(this.provider, this.code);
   }
 });
@@ -103,9 +100,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Halaman Social")])])
+  }
+]
 render._withStripped = true
 
 

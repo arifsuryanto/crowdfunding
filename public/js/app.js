@@ -2580,7 +2580,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = "/api/social/" + provider;
       axios.get(url).then(function (response) {
         var data = response.data;
-        console.log("ini google " + data.url);
+        console.log("ini url google " + data.url);
         window.location.href = data.url;
       })["catch"](function (error) {
         _this2.setAlert({
@@ -100756,14 +100756,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * all outgoing HTTP requests automatically have it attached. This is just
  * a simple convenience so we don't have to attach every token manually.
  */
+// let token = document.head.querySelector('meta[name="csrf-token"]');
+// if (token) {
+//     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+// } else {
+//     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+// }
 
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -101199,15 +101198,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Campaign.vue */ "./resources/js/views/Campaign.vue"));
     }
   }, {
-    path: '/social/:provider/callback',
+    path: '/auth/social/:provider/callback',
     name: 'social',
     component: function component() {
       return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Social.vue */ "./resources/js/views/Social.vue"));
     }
-  }, {
-    path: '*',
-    redirect: '/'
-  }]
+  } // {
+  //     path: '*',
+  //     redirect: '/'
+  // }
+  ]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -101378,7 +101378,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     setComponent: function setComponent(_ref2, component) {
       var commit = _ref2.commit;
-      console.log("ini component " + component);
       commit('setComponent', component);
       commit('setStatus', true);
     }
