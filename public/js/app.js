@@ -2179,6 +2179,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -39042,7 +39044,7 @@ var render = function() {
       _c(
         "v-navigation-drawer",
         {
-          attrs: { app: "" },
+          attrs: { color: "primary", app: "" },
           scopedSlots: _vm._u(
             [
               !_vm.guest
@@ -39165,7 +39167,10 @@ var render = function() {
               _vm._l(_vm.menus, function(item, index) {
                 return _c(
                   "v-list-item",
-                  { key: "menu-" + index, attrs: { to: item.route } },
+                  {
+                    key: "menu-" + index,
+                    attrs: { color: "white", to: item.route }
+                  },
                   [
                     _c(
                       "v-list-item-icon",
@@ -39195,7 +39200,7 @@ var render = function() {
           attrs: {
             app: "",
             absolute: "",
-            color: "success",
+            color: "blue",
             dark: "",
             "elevate-on-scroll": "",
             "scroll-target": "#scrolling-techniques-7"
@@ -39211,7 +39216,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("Sanbercode App")]),
+          _c("v-toolbar-title", [_vm._v("NYISIH")]),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -39293,13 +39298,15 @@ var render = function() {
         [
           _c(
             "v-footer",
-            { attrs: { absolute: "", app: "" } },
+            { attrs: { absolute: "", app: "", color: "info" } },
             [
               _c("v-card-text", { staticClass: "text-center" }, [
                 _vm._v(
-                  "\n        © " + _vm._s(new Date().getFullYear()) + " - "
+                  "\n        © " +
+                    _vm._s(new Date().getFullYear()) +
+                    " -\n        "
                 ),
-                _c("strong", [_vm._v("SanbercodeApp")])
+                _c("strong", [_vm._v("Men-NYISIH-App")])
               ])
             ],
             1

@@ -17,7 +17,7 @@
     </keep-alive>
 
     <!-- sidebar   -->
-    <v-navigation-drawer app v-model="drawer">
+    <v-navigation-drawer color="primary" app v-model="drawer">
       <v-list>
         <v-list-item v-if="!guest">
           <v-list-item-avatar>
@@ -47,6 +47,7 @@
         <v-divider></v-divider>
 
         <v-list-item
+          color="white"
           v-for="(item, index) in menus"
           :key="`menu-` + index"
           :to="item.route"
@@ -75,13 +76,13 @@
     <v-app-bar
       app
       absolute
-      color="success"
+      color="blue"
       dark
       elevate-on-scroll
       scroll-target="#scrolling-techniques-7"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Sanbercode App</v-toolbar-title>
+      <v-toolbar-title>NYISIH</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -123,9 +124,10 @@
 
     <!-- footer -->
     <v-card>
-      <v-footer absolute app>
+      <v-footer absolute app color="info">
         <v-card-text class="text-center">
-          &copy; {{ new Date().getFullYear() }} - <strong>SanbercodeApp</strong>
+          &copy; {{ new Date().getFullYear() }} -
+          <strong>Men-NYISIH-App</strong>
         </v-card-text>
       </v-footer>
     </v-card>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Halaman Social</h1>
+    <h1></h1>
   </div>
 </template>
 
